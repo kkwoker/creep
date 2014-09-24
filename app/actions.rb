@@ -6,7 +6,7 @@ end
 	
 # Display all photos
 get '/photos' do
-  erb:'/photo/photo'
+  erb:'/photo/main'
 end
 	
 	

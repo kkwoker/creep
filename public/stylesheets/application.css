@@ -1,0 +1,58 @@
+.index_background{ 
+  background: url(../images/mike-tyson.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.center_text{
+  text-align: center;
+}
+
+.enter_button {
+  -moz-box-shadow: 8px 6px 0px 0px #f29c93;
+  -webkit-box-shadow: 8px 6px 0px 0px #f29c93;
+  box-shadow: 8px 6px 0px 0px #f29c93;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #ce0100) );
+  background:-moz-linear-gradient( center top, #79bbff 5%, #ce0100 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#ce0100');
+  background-color:#79bbff;
+  -webkit-border-top-left-radius:12px;
+  -moz-border-radius-topleft:12px;
+  border-top-left-radius:12px;
+  -webkit-border-top-right-radius:12px;
+  -moz-border-radius-topright:12px;
+  border-top-right-radius:12px;
+  -webkit-border-bottom-right-radius:12px;
+  -moz-border-radius-bottomright:12px;
+  border-bottom-right-radius:12px;
+  -webkit-border-bottom-left-radius:12px;
+  -moz-border-radius-bottomleft:12px;
+  border-bottom-left-radius:12px;
+  text-indent:0px;
+  border:2px solid #d83526;
+  display:inline-block;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:31px;
+  font-weight:bold;
+  font-style:normal;
+  height:51px;
+  line-height:51px;
+  width:200px;
+  text-decoration:none;
+  text-align:center;
+  text-shadow:-10px -5px 8px #b23e35;
+
+  position:absolute;
+  top:10%; 
+  left:42%;
+}
+.enter_button:hover {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ce0100), color-stop(1, #fe1a00) );
+  background:-moz-linear-gradient( center top, #ce0100 5%, #fe1a00 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ce0100', endColorstr='#fe1a00');
+  background-color:#ce0100;
+}
+
