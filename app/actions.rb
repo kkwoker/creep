@@ -6,7 +6,7 @@ end
 	
 # Display all photos
 get '/photos' do
-
+  erb:'/photo/photo'
 end
 	
 	
@@ -24,6 +24,8 @@ post '/photos' do
     f.write(params[:photo][:tempfile].read)
   end
 
+  
+  redirect '/photos'
 
 end
 	
@@ -37,7 +39,7 @@ end
 
 #Filtered photos page with a single tags
 get '/photos/tag/:id' do
-
+  erb:'/photo/tag'
 end
 
 
