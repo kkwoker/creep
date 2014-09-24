@@ -6,32 +6,32 @@ end
 
 
 
-# Display all pictures
-get '/pictures' do
+# Display all photos
+get '/photos' do
 
 end
 
 
-# Show form to create new picture
-get '/pictures/new' do
+# Show form to create new photo
+get '/photos/new' do
 
 end
 
 
-# Create a new picture
-post '/pictures' do
+# Create a new photo
+post '/photos' do
 
 end
 
 
-# Show picture with id = #
-get '/pictures/:id' do
+# Show photo with id = #
+get '/photos/:id' do
 
 end
 
 
-#Filtered pictures page with a single tags
-get '/pictures/tag/:id' do
+#Filtered photos page with a single tags
+get '/photos/tag/:id' do
 
 end
 
