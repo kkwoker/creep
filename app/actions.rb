@@ -24,7 +24,6 @@ post '/photos' do
     f.write(params[:photo][:tempfile].read)
   end
 
-  
   redirect '/photos'
 
 end
