@@ -7,25 +7,25 @@ end
 
 
 # Display all pictures
-get '/pictures'
+get '/pictures' do
 
 end
 
 
 # Show form to create new picture
-get '/pictures/new'
+get '/pictures/new' do
 
 end
 
 
 # Create a new picture
-post '/pictures'
+post '/pictures' do
 
 end
 
 
 # Show picture with id = #
-get '/pictures/:id'
+get '/pictures/:id' do
 
 end
 
