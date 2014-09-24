@@ -6,7 +6,7 @@ end
 	
 # Display all photos
 get '/photos' do
-
+  erb:'/photo/photo'
 end
 	
 	
@@ -30,13 +30,13 @@ end
 
 # Show photo with id = #
 get '/photos/:id' do
-
+  erb:'/photo/show'
 end
 
 
 #Filtered photos page with a single tags
 get '/photos/tag/:id' do
-
+  erb:'/photo/tag'
 end
 
 
