@@ -3,35 +3,39 @@ get '/' do
   erb :index
 end
 
+	
+# Display all photos
+get '/photos' do
+
+end
+	
+	
+# Show form to create new photos
+get '/photos/new' do
+	erb :'/photo/new'
+end
 
 
+# Create a new photos
+post '/photos' do
 
-# Display all pictures
-get '/pictures' do
+	# save the File object into /images
+	File.open('public/uploads/' + params[:photo][:filename], "w") do |f|
+    f.write(params[:photo][:tempfile].read)
+  end
+
+
+end
+	
+
+# Show photo with id = #
+get '/photos/:id' do
 
 end
 
 
-# Show form to create new picture
-get '/pictures/new' do
-
-end
-
-
-# Create a new picture
-post '/pictures' do
-
-end
-
-
-# Show picture with id = #
-get '/pictures/:id' do
-
-end
-
-
-#Filtered pictures page with a single tags
-get '/pictures/tag/:id' do
+#Filtered photos page with a single tags
+get '/photos/tag/:id' do
 
 end
 
