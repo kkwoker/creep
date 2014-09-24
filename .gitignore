@@ -34,5 +34,4 @@ build/
 .rvmrc
 
 public/uploads
-
 db/db.sqlite3
