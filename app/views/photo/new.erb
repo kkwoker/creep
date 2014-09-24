@@ -1,7 +1,12 @@
 Add a photo page
+<a href="/photo/main"> Back </a>
+
+<% if @error %>
+	<p> That was not an image file! only .jpg .png .gif .bng extensions allowed </p>
+<% end %>
 
 <!-- Post a photo form -->
-<form method="post" action="/photos" enctype='multipart/form-data' >
+<form method="post" action="/photos" enctype='multipart/form-data' runat="server">
 
   <div>
     <label>Title:</label>
@@ -10,7 +15,8 @@ Add a photo page
 
   <div>
     <label>photo:</label>
-    <input type="file" name="photo" > 
+    <input type="file" name="photo" id="imgInp" > 
+    <img id="blah" src="#" alt="your image" width="100" height="100"/>
   </div>
 
 
@@ -23,4 +29,3 @@ Add a photo page
     <input type="submit" value="Upload" >
   </div>
 </form>
-
