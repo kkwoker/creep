@@ -30,7 +30,8 @@ end
 
 # Show photo with id = #
 get '/photos/:id' do
-
+# @photos = Photo.new.find params[:id]
+erb :'photo/show'
 end
 
 
