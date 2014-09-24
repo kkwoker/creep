@@ -44,7 +44,9 @@ end
 
 # Show photo with id = #
 get '/photos/:id' do
+
   erb :'/photo/show'
+
 end
 
 
