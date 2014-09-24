@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140924215005) do
+ActiveRecord::Schema.define(version: 20140924234654) do
 
   create_table "comments", force: true do |t|
     t.string   "body"
@@ -20,12 +20,16 @@ ActiveRecord::Schema.define(version: 20140924215005) do
   end
 
   create_table "photos", force: true do |t|
-    t.string   "tag"
     t.string   "url"
     t.string   "photo_title"
     t.integer  "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "tag_id"
+  end
+
+  create_table "tags", force: true do |t|
+    t.string "name"
   end
 
 end
