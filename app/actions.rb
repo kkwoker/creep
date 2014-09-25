@@ -63,7 +63,9 @@ end
 #Filtered photos page with a single tags
 # href="photos/tag/#<%=Tag.find_by(name: tag)%>"
 get '/photos/tag/:tag_name' do #instead of id, use tag name
-  erb :'/photo/tag'
+	@photos = Photo.all
+	@tag = params[:tag_name]
+  erb :'/photo/main'
 end
 
 # Show photo with id = #
