@@ -56,7 +56,7 @@ post '/photos' do
 										)
 	
 	photo.save
-	tagnames = params[:tags].split('#')
+	tagnames = params[:tags].split(',')
 
   tagnames.each do |tagname|
   	photo.tags << to_tag(tagname)
@@ -75,13 +75,16 @@ get '/photos/tag' do
 end
 
 #Filtered photos page with a single tags
-get '/photos/tag/:tag_name' do #instead of id, use tag name -->CANNOT USE # INSIDE THE URL
-	
-	# @tag = to_tag(params[:tag_name])
-
-	# @photos = Photo.all.keep_if{|photo| photo.tags.include? @tag}
-	 @photos = Photo.all
-   erb :'/photo/main'
+get '/photos/tag/:tag_names' do #instead of id, use tag name -->CANNOT USE # INSIDE THE URL
+	@photos = Photo.all
+	# @tag = to_tag(params[:tag_names])
+	@tags =[]
+	params[:tag_names].split(',').each do |tag|
+		t = to_tag(tag)
+		@tags << t
+		@photos.keep_if { |photo| photo.tags.include? t}
+	end
+  erb :'/photo/main'
 
 end
 

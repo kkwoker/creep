@@ -8,15 +8,17 @@
 </div>
 
 <form method="get" action="/photos/tag">
-	Enter tags here separated by '#'
-  <input type="text" name="tags">
+	Enter tags here separated by ','
+  <input type="text" name="tags" required>
   <input type="submit" value="filter" >
 </form>
-<%=@tag && @tag.name%>
+<%@tags && @tags.each do |tag|%>
+<%= tag.name %>
+<% end %>
 <p>
 
 	<% @photos.each do |photo| %>
-		<small><%=photo.filename%></small>
+		
 		<a href='/photos/<%= photo.id %>'><img src="/uploads/<%= photo.filename%>" width="100" height="100"/></a>
 	<% end %>
 </p>
