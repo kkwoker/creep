@@ -95,10 +95,22 @@ get '/photos/:id' do
   erb :'/photo/show'
   
 end
+# apply comments to the database
+
+post '/comment' do
+  @comment = Comment.new(
+    body: params[:body],
+    photo_id: params[:photo_id]
+    )
+  @comment.save
+  redirect '/photos/'+params[:photo_id]
+end
+
 
 #About
 get '/about' do
-	erb :'/photo/tag'
+
+  erb :'/photo/tag'
 end
 
 

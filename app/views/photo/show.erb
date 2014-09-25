@@ -9,7 +9,21 @@ SHOW PHOTO PAGE
   Tags: tags go here...
   <%= Tag.find(@photo.tag_id).name %>
 </p>
-
-
+<p>Comments:</p>
+<% @photo.comments.each do |comment| %>
+  <p> <%= comment.body %> </p>
+<% end %>
 
 <!-- #@photos.photo_url  -->
+<form action='/comment' method='post'>
+  <input type="text" style="display:none;" name="photo_id" value="<%= @photo.id %>">
+    <label>Comment:</label>
+  <div class="form_box">
+    <textarea class="submissionfield" type="text" name="body" cols="40" rows="4"></textarea>
+  </div>
+  <div class="submit_button">
+      <input type="submit" value="Submit">
+  </div>
+</form>
+
+<p><a href="/photos"> Back </a></p>
