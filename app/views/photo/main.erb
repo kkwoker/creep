@@ -12,9 +12,9 @@
   <input type="text" name="tag">
   <input type="submit" value="filter" >
 </form>
-<%=@tag%>
+<%=@tag.name%>
 <p>
-	
+
 	<% @photos.each do |photo| %>
 		<small><%=photo.filename%></small>
 		<a href='/photos/<%= photo.id %>'><img src="/uploads/<%= photo.filename%>" width="100" height="100"/></a>

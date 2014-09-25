@@ -2,6 +2,16 @@ def is_picture?(filename)
 	filename =~ /([^\s]+(\.(?i)(JPG|jpg|PNG|png|GIF|gif|BMP|bmp))$)/
 end
 
+# Returns tag if it is already in the database. If not, add the tag to the database and return the tag
+def to_tag(name)
+	tag = Tag.find_by(name: name)
+	if tag.nil?
+		tag = Tag.new(name: name)
+		tag.save
+	end
+	tag
+end
+
 # Homepage (Root path)
 get '/' do
   erb :index
@@ -31,12 +41,8 @@ post '/photos' do
 		File.open('public/uploads/' + params[:photo][:filename], "w") do |f|
 	    f.write(params[:photo][:tempfile].read)
 	  end
+	  tag = to_tag(params[:tags])
 
-	  tag = Tag.find_by(name: params[:tags])
-	  if tag.nil?
-	  	tag = Tag.new(name: params[:tags])
-	  	tag.save
-	  end
   	photo = Photo.new(title: params[:title],
   					  			 rating: 0,
   								 filename: params[:photo][:filename],
@@ -61,18 +67,20 @@ get '/photos/tag' do
 end
 
 #Filtered photos page with a single tags
-# href="photos/tag/#<%=Tag.find_by(name: tag)%>"
 get '/photos/tag/:tag_name' do #instead of id, use tag name
-	@photos = Photo.all
-	@tag = params[:tag_name]
+	
+	@tag = to_tag(params[:tag_name])
+	@photos = Photo.where(tag_id: @tag.id)
   erb :'/photo/main'
+
 end
 
 # Show photo with id = #
 get '/photos/:id' do
+
 	@photo = Photo.find(params[:id])
   erb :'/photo/show'
-
+  
 end
 
 #About
