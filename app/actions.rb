@@ -53,19 +53,25 @@ post '/photos' do
 end
 	
 
+
+# Gets the tag information and redirect to filtered photos page
+get '/photos/tag' do
+
+	redirect '/photos/tag/' + params[:tag]
+end
+
+#Filtered photos page with a single tags
+# href="photos/tag/#<%=Tag.find_by(name: tag)%>"
+get '/photos/tag/:tag_name' do #instead of id, use tag name
+  erb :'/photo/tag'
+end
+
 # Show photo with id = #
 get '/photos/:id' do
 	@photo = Photo.find(params[:id])
   erb :'/photo/show'
 
 end
-
-
-#Filtered photos page with a single tags
-get '/photos/tag/:id' do
-  erb :'/photo/tag'
-end
-
 
 #About
 get '/about' do

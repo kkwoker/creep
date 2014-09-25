@@ -4,14 +4,16 @@
 <a href='/photos/new'>Add a photo</a>
 </div>
 <div>
-<a href='/photos/:id'>Clickable PHOTOS in the end</a>
-</div>
-<div>
 <a href='/photos/tag/:id'>Tag Specific Page!</a>
 </div>
 
+<form method="get" action="/photos/tag">
+  <input type="text" name="tag">
+  <input type="submit" value="filter" >
+
+</form>
 
 <% @photos.each do |photo| %>
-	<a href='/photos/<%= photo.id %>'><img src="uploads/<%= photo.filename%>"/></a>
+	<a href='/photos/<%= photo.id %>'><img src="uploads/<%= photo.filename%>" width="100" height="100"/></a>
 <% end %>
 	
