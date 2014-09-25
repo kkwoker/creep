@@ -32,6 +32,17 @@ post '/photos' do
 	    f.write(params[:photo][:tempfile].read)
 	  end
 
+	  tag = Tag.find_by(name: params[:tags])
+	  if tag.nil?
+	  	tag = Tag.new(name: params[:tags])
+	  	tag.save
+	  end
+  	photo = Photo.new(title: params[:title],
+  					  			 rating: 0,
+  								 filename: params[:photo][:filename],
+  								 tag_id: tag.id
+  										)
+  	photo.save
 	  redirect '/photos'
 	else
 		# set an error flag to display "Was not an image file" to the form
