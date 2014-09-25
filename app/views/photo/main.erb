@@ -9,3 +9,9 @@
 <div>
 <a href='/photos/tag/:id'>Tag Specific Page!</a>
 </div>
+
+
+<% @photos.each do |photo| %>
+	<a href='/photos/<%= photo.id %>'><img src="uploads/<%= photo.filename%>"/></a>
+<% end %>
+	

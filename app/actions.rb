@@ -10,7 +10,7 @@ end
 	
 # Display all photos
 get '/photos' do
-
+	@photos = Photo.all
   erb :'/photo/main'
 
 end
@@ -55,7 +55,7 @@ end
 
 # Show photo with id = #
 get '/photos/:id' do
-
+	@photo = Photo.find(params[:id])
   erb :'/photo/show'
 
 end

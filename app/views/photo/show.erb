@@ -1,12 +1,13 @@
 SHOW PHOTO PAGE
-<h1><%=@photos.title %></h1>
+<h1><%= @photo.title %></h1>
 
 <p>
-  <img src ="http://2.bp.blogspot.com/-D22ZeMYGaXU/UTphdOqJJ_I/AAAAAAAABNs/W55eNYZBkj0/s640/ZvhPuqL.jpg"/>
+  <img src ="/uploads/<%=@photo.filename%>"/>
 </p>
 
 <p>
   Tags: tags go here...
+  <%= Tag.find(@photo.tag_id).name %>
 </p>
 
 
