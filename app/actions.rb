@@ -96,6 +96,7 @@ end
 
 #About
 get '/about' do
+
   erb :'/photo/tag'
 end
 
