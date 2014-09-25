@@ -8,11 +8,11 @@
 </div>
 
 <form method="get" action="/photos/tag">
-	Enter tags here
-  <input type="text" name="tag">
+	Enter tags here separated by '#'
+  <input type="text" name="tags">
   <input type="submit" value="filter" >
 </form>
-<%=@tag.name%>
+<%=@tag && @tag.name%>
 <p>
 
 	<% @photos.each do |photo| %>
