@@ -12,7 +12,7 @@
   <input type="text" name="tag">
   <input type="submit" value="filter" >
 </form>
-<%=@tag.name%>
+<%= @tag && @tag.name%>
 <p>
 
 	<% @photos.each do |photo| %>
