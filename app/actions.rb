@@ -35,26 +35,34 @@ end
 # Create a new photos
 post '/photos' do
 
-	# Put the image into /uploads only if it is a picture
-	if params[:photo] && is_picture?(params[:photo][:filename])
-		# save the File object into /images
-		File.open('public/uploads/' + params[:photo][:filename], "w") do |f|
-	    f.write(params[:photo][:tempfile].read)
-	  end
-	  tag = to_tag(params[:tags])
-
-  	photo = Photo.new(title: params[:title],
-  					  			 rating: 0,
-  								 filename: params[:photo][:filename],
-  								 tag_id: tag.id
-  										)
-  	photo.save
-	  redirect '/photos'
-	else
+	# if the photo is invalid, reload page and post error
+	if !(params[:photo] && is_picture?(params[:photo][:filename]))
 		# set an error flag to display "Was not an image file" to the form
 		@error = true
 		erb :'/photo/new'
-	end
+	end		
+
+
+	# Put the image into /uploads only if it is a picture
+
+	# save the File object into /images
+	File.open('public/uploads/' + params[:photo][:filename], "w") do |f|
+    f.write(params[:photo][:tempfile].read)
+  end
+  
+	photo = Photo.new(title: params[:title],
+					  			 rating: 0,
+								 filename: params[:photo][:filename]
+										)
+	
+	photo.save
+	tagnames = params[:tags].split(',')
+
+  tagnames.each do |tagname|
+  	photo.tags << to_tag(tagname)
+  end
+
+  redirect '/photos'
 
 end
 	
@@ -63,14 +71,19 @@ end
 # Gets the tag information and redirect to filtered photos page
 get '/photos/tag' do
 
-	redirect '/photos/tag/' + params[:tag]
+	redirect '/photos/tag/' + params[:tags]
 end
 
 #Filtered photos page with a single tags
-get '/photos/tag/:tag_name' do #instead of id, use tag name
-	
-	@tag = to_tag(params[:tag_name])
-	@photos = Photo.where(tag_id: @tag.id)
+get '/photos/tag/:tag_names' do #instead of id, use tag name -->CANNOT USE # INSIDE THE URL
+	@photos = Photo.all
+	# @tag = to_tag(params[:tag_names])
+	@tags =[]
+	params[:tag_names].split(',').each do |tag|
+		t = to_tag(tag)
+		@tags << t
+		@photos.keep_if { |photo| photo.tags.include? t}
+	end
   erb :'/photo/main'
 
 end
