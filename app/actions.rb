@@ -12,6 +12,10 @@ def to_tag(name)
 	tag
 end
 
+def sanitize_filename(filename)
+  filename.gsub(/[^\w\.\-]/,"_")
+end
+
 # Homepage (Root path)
 get '/' do
   erb :index
@@ -46,13 +50,14 @@ post '/photos' do
 	# Put the image into /uploads only if it is a picture
 
 	# save the File object into /images
-	File.open('public/uploads/' + params[:photo][:filename], "w") do |f|
+	fname = sanitize_filename(params[:photo][:filename])
+	File.open("public/uploads/#{fname}", "w") do |f|
     f.write(params[:photo][:tempfile].read)
   end
   
 	photo = Photo.new(title: params[:title],
 					  			 rating: 0,
-								 filename: params[:photo][:filename]
+								 filename: fname
 										)
 	
 	photo.save
