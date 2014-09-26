@@ -1,3 +1,6 @@
+
+
+
 <!-- NAV BAR -->
   <header>
     <div class='container'>
@@ -39,6 +42,21 @@
     </div>
   </header>
 <h1>creepr main page<h1>
+
+
+<!-- STUFF FOR USERS -->
+<% if session[:user_id] %>
+  <%logged_user = User.find(session[:user_id]).username%>
+  <small>logged in as <a href="/profile/<%=logged_user%>"><%=logged_user%></a></small>
+  <small><a href="/logout">Logout</a></small>
+<% end %>
+<small>
+<a href="/login"> Login </a>
+<a href="/signup"> Signup </a>
+
+</small>
+<!-- END STUFF FOR USERS -->
+
 
 <p> 
 <%@tags && @tags.each do |tag|%>

@@ -1,3 +1,5 @@
+enable :sessions
+
 def is_picture?(filename)
   filename =~ /([^\s]+(\.(?i)(JPG|jpg|PNG|png|GIF|gif|BMP|bmp))$)/
 end
@@ -65,7 +67,7 @@ post '/photos' do
                     )
 
   photo.save
-  tagnames = params[:tags].split(',')
+  tagnames = params[:tags].split(/W/)
 
   tagnames.each do |tagname|
     photo.tags << to_tag(tagname)
@@ -90,7 +92,7 @@ end
 get '/photos/tag/:tag_names' do
   @photos = Photo.all
   @tags =[]
-  params[:tag_names].split(',').each do |tag|
+  params[:tag_names].split(/\W/).each do |tag|
     t = to_tag(tag)
     @tags << t
     @photos.keep_if { |photo| photo.tags.include? t}
@@ -121,12 +123,14 @@ end
 # add tag on the show page
 post '/tag' do
   photo = Photo.find(params[:photo_id])
-  t = to_tag(params[:tagname])
-  if !photo.tags.include? t
-    photo.tags << t
-    photo.save
+  tag_arr = params[:tagname].split(/\W/)
+  tag_arr.each do |tag_name|
+    t = to_tag(tag_name)
+    if !photo.tags.include? t
+      photo.tags << t
+      photo.save
+    end
   end
-  
   redirect '/photos/' + params[:photo_id].to_s
 end
 
@@ -140,7 +144,45 @@ get '/about' do
 end
 
 
-#Secret admin login
-get '/login' do
 
+get '/login' do
+  erb :'/user/login'
+end
+
+post '/login' do
+  if User.exists?(username: params[:username], password: params[:password])
+    @user = User.where(username: params[:username], password: params[:password])
+
+    session[:user_id] = @user[0][:id]
+    redirect '/photos'
+  else
+    @error = true
+    erb :'user/login'
+  end
+end
+
+get '/logout' do
+  session.clear
+  redirect '/photos'
+end
+  
+get '/profile/:username' do
+  erb :'user/profile'
+end
+
+get '/signup' do
+  erb :'/user/signup'
+end
+
+post '/signup' do
+  @user = User.new(
+    username: params[:username],
+    password: params[:password]
+    )
+  if @user.save
+    redirect '/login'
+  else
+    @error = true
+    erb :'/user/signup'
+  end
 end

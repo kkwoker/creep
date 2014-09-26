@@ -1,0 +1,30 @@
+<% if session[:user_id] %>
+  oops, <%=User.find(session[:user_id])[:username] %>
+<a href="/logout">Logout</a>
+<% else %>
+  <h1>Log in here!</h1>
+  <% if @error %>
+     Incorrect credentials 
+  <% end %>
+  <form method="post" action="/login">
+
+    <div>
+      <label>Username:</label>
+      <input type="text" name="username" >
+    </div>
+
+    <div>
+      <label>Password:</label>
+      <input type="password" name="password" >
+    </div>
+
+    <div>
+      <input type="submit" value="Login" >
+    </div>
+
+  </form>
+
+  <form method="get" action="/signup">
+    <input type="submit" value="Signup">
+  </form>
+<%end%>

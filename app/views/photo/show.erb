@@ -30,12 +30,13 @@
   </div>
 </form>
 
+
 <!-- Add a tag  -->
 <form action='/tag' method='post'>
   <input type="text" style="display:none;" name="photo_id" value="<%= @photo.id %>">
-    <label>Add a tag:</label>
+    <label>Add tags separated by ',':</label>
   <div class="form_box">
-    <textarea class="submissionfield" type="text" name="tagname" cols="40" rows="4" required maxlength="140" style="resize: none;"></textarea>
+    <input  type="text" name="tagname" cols="40" rows="4" required maxlength="140" style="resize: none;"></textarea>
   </div>
 
   <div class="submit_button">
