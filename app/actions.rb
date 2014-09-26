@@ -45,6 +45,7 @@ end
 # Create a new photos
 post '/photos' do
 
+  binding.pry
   # if the photo is invalid, reload page and post error
   if !(params[:photo] && is_picture?(params[:photo][:filename]))
     # set an error flag to display "Was not an image file" to the form
