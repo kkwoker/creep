@@ -114,8 +114,22 @@ post '/comment' do
     photo_id: params[:photo_id]
   )
   @comment.save
-  redirect '/photos/'+params[:photo_id]
+  redirect '/photos/' + params[:photo_id]
+
 end
+
+# add tag on the show page
+post '/tag' do
+  photo = Photo.find(params[:photo_id])
+  t = to_tag(params[:tagname])
+  if !photo.tags.include? t
+    photo.tags << t
+    photo.save
+  end
+  
+  redirect '/photos/' + params[:photo_id].to_s
+end
+
 
 
 #About
