@@ -6,9 +6,11 @@
 
 <p>
   Tags: tags go here...
+
   <% @photo.tags.each do |tag|%>
   <%= tag.name %>
   <% end %>
+
 </p>
 <p>Comments:</p>
 <% @photo.comments.each do |comment| %>
