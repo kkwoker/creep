@@ -1,5 +1,11 @@
-
-
+<%tags = Tag.all%>
+<% tags.sort_by!{|tag| tag.photos.size} %>
+<p>
+Top three:
+<%=tags.pop.name %>
+<%=tags.pop.name %>
+<%=tags.pop.name %>
+</p>
 
 <!-- NAV BAR -->
   <header>
