@@ -1,4 +1,4 @@
 class Tag < ActiveRecord::Base
-	has_many :photos
+	has_and_belongs_to_many :photos
 	validates :name, uniqueness: true
 end
