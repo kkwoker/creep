@@ -1,25 +1,26 @@
-SHOW PHOTO PAGE
 <h1><%= @photo.title %></h1>
 
 <p>
-  <img src ="/uploads/<%=@photo.filename%>"/>
+  <img src ="/uploads/<%=@photo.filename%>" width="100" height="100"/>
 </p>
 
 <p>
   Tags: tags go here...
-  <%= Tag.find(@photo.tag_id).name %>
+  <% @photo.tags.each do |tag|%>
+  <%= tag.name %>
+  <% end %>
 </p>
 <p>Comments:</p>
 <% @photo.comments.each do |comment| %>
   <p> <%= comment.body %> </p>
 <% end %>
 
-<!-- #@photos.photo_url  -->
+<!-- Comment submission form  -->
 <form action='/comment' method='post'>
   <input type="text" style="display:none;" name="photo_id" value="<%= @photo.id %>">
     <label>Comment:</label>
   <div class="form_box">
-    <textarea class="submissionfield" type="text" name="body" cols="40" rows="4"></textarea>
+    <textarea class="submissionfield" type="text" name="body" cols="40" rows="4" required maxlength="140" style="resize: none;"></textarea>
   </div>
   <div class="submit_button">
       <input type="submit" value="Submit">
