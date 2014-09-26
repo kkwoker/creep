@@ -79,14 +79,16 @@ end
 
 # Gets the tag information and redirect to filtered photos page
 get '/photos/tag' do
-
   redirect '/photos/tag/' + params[:tags]
 end
 
+get '/photos/tag/' do
+		redirect '/photos'
+end
+
 #Filtered photos page with a single tags
-get '/photos/tag/:tag_names' do #instead of id, use tag name -->CANNOT USE # INSIDE THE URL
+get '/photos/tag/:tag_names' do
   @photos = Photo.all
-  # @tag = to_tag(params[:tag_names])
   @tags =[]
   params[:tag_names].split(',').each do |tag|
     t = to_tag(tag)
