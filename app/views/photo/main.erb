@@ -39,8 +39,11 @@ Top three:
               <!-- HERE IS WHERE WE PUT THE RECENT TAG CODE -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Recent Tags <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-           
-
+                  <%tags = Tag.all%>
+                  <% tags.sort_by!{|tag| tag.photos.size} %>
+                  <li><%=tags.pop.name %></li>
+                  <li><%=tags.pop.name %></li>
+                  <li><%=tags.pop.name %></li>
                 </ul>
               </li>
             </ul>

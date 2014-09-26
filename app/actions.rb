@@ -85,7 +85,7 @@ get '/photos/tag' do
 end
 
 get '/photos/tag/' do
-		redirect '/photos'
+  redirect '/photos'
 end
 
 #Filtered photos page with a single tags
@@ -165,7 +165,7 @@ get '/logout' do
   session.clear
   redirect '/photos'
 end
-  
+
 get '/profile/:username' do
   erb :'user/profile'
 end
@@ -178,7 +178,7 @@ post '/signup' do
   @user = User.new(
     username: params[:username],
     password: params[:password]
-    )
+  )
   if @user.save
     redirect '/login'
   else
