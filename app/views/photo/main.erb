@@ -13,11 +13,13 @@
   <input type="submit" value="filter" >
 </form>
 
+<p>	
 <%@tags && @tags.each do |tag|%>
-<%= tag.name %>
-<small><a href="">remove        </a></small>
-<% end %>
+	<%= tag.name %>
 
+	<small><a href="/photos/tag/<%=(@tags.map(&:name) - [tag.name]).join(',')%>"> remove        .</a></small>
+<% end %>
+</p>
 <p>
 
 	<% @photos.each do |photo| %>
