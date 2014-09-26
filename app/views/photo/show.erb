@@ -24,6 +24,21 @@
   <div class="form_box">
     <textarea class="submissionfield" type="text" name="body" cols="40" rows="4" required maxlength="140" style="resize: none;"></textarea>
   </div>
+
+  <div class="submit_button">
+      <input type="submit" value="Submit">
+  </div>
+</form>
+
+
+<!-- Add a tag  -->
+<form action='/tag' method='post'>
+  <input type="text" style="display:none;" name="photo_id" value="<%= @photo.id %>">
+    <label>Add tags separated by ',':</label>
+  <div class="form_box">
+    <input  type="text" name="tagname" cols="40" rows="4" required maxlength="140" style="resize: none;"></textarea>
+  </div>
+
   <div class="submit_button">
       <input type="submit" value="Submit">
   </div>
