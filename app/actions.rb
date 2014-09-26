@@ -121,7 +121,7 @@ end
 #About
 get '/about' do
 
-  erb :'/photo/tag'
+  erb :'/photo/about'
 
 end
 

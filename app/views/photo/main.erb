@@ -1,29 +1,83 @@
+<!-- NAV BAR -->
+  <header>
+    <div class='container'>
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Creepr</a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/about">About</a></li>
+            </ul>
+            <!-- Search BY Tag -->
+            <form class="navbar-form navbar-left" role="search" method="get" action="/photos/tag">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search by Tag" name="tags" required>
+              </div>
+              <button type="submit" class="btn btn-default" value="filter">Search</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/photos/new">Add Photo</a></li>
+              <li class="dropdown">
+              <!-- HERE IS WHERE WE PUT THE RECENT TAG CODE -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Recent Tags <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    </div>
+  </header>
 <h1>creepr main page<h1>
 
-<div>
-<a href='/photos/new'>Add a photo</a>
-</div>
-<div>
-<a href='/photos/tag/:id'>Tag Specific Page!</a>
-</div>
-
-<form method="get" action="/photos/tag">
-	Enter tags here separated by ','
-  <input type="text" name="tags" required>
-  <input type="submit" value="filter" >
-</form>
-
-<p>	
+<p> 
 <%@tags && @tags.each do |tag|%>
-	<%= tag.name %>
+  <%= tag.name %>
 
-	<small><a href="/photos/tag/<%=(@tags.map(&:name) - [tag.name]).join(',')%>"> remove        .</a></small>
+  <small><a href="/photos/tag/<%=(@tags.map(&:name) - [tag.name]).join(',')%>"> remove        .</a></small>
 <% end %>
 </p>
-<p>
 
-	<% @photos.each do |photo| %>
-		
-		<a href='/photos/<%= photo.id %>'><img src="/uploads/<%= photo.filename%>" width="100" height="100"/></a>
-	<% end %>
-</p>
+
+<!-- MAIN PHOTO DISPLAY -->
+
+<div class="container">
+  <% @photos.each_slice(3).to_a.each do |photo_row| %>
+    <div class="row borderz">
+    <% photo_row.each do |photo| %>
+     <div class="col-xs-8 col-sm-4">
+      <a href='/photos/<%= photo.id %>'><img src="/uploads/<%= photo.filename%>" class="img-responsive img-thumbnail" alt="Responsive image"/></a>
+    </div>
+    <% end %>
+  </div>
+ <% end %>
+</div>
+
+
+
+
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="/js/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+   <!-- Menu Toggle Script -->
+      <script>
+      $("#menu-toggle").click(function(e) {
+          e.preventDefault();
+          $("#wrapper").toggleClass("toggled");
+      });
+      </script>
+
+
