@@ -11,11 +11,7 @@
   <small>logged in as <a href="/profile/<%=logged_user%>"><%=logged_user%></a></small>
   <small><a href="/logout">Logout</a></small>
 <% end %>
-<small>
-<a href="/login"> Login </a>
-<a href="/signup"> Signup </a>
 
-</small>
 <!-- END STUFF FOR USERS -->
 
 
@@ -35,7 +31,7 @@
 
 
 <!-- MAIN PHOTO DISPLAY -->
-
+<% @photos.reverse! %>
 <div class="container">
   <% @photos.each_slice(3).to_a.each do |photo_row| %>
     <div class="row borderz">

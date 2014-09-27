@@ -1,19 +1,23 @@
-
+<div>
+  <a href="/photos"> Back </a>
+</div>
 
 PROFILE FOR : 
 <% logged_user = User.find(session[:user_id]) %>
-<%=  logged_user.username%>
-<a href="/photos"> Back </a>
+<%= logged_user.username%>
 
 <form method="post" action="/addYOusername">
-  <small><%=logged_user.yo_username%></small>
+  YO Username: <small><%=logged_user.yo_username%></small>
+  <div>
   <input type="text" name="YOname" >
+  </div>
   <button type='submit'>save YO username</button>
 </form>
 
-
+Photo's I've posted:
 <!-- MAIN PHOTO DISPLAY -->
 <p>
+<% @user_photos.reverse! %>
 <div class="container">
   <% @user_photos.each_slice(3).to_a.each do |photo_row| %>
     <div class="row borderz">
