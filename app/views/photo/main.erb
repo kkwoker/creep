@@ -1,10 +1,19 @@
-
 <div class='container'>
 <div class='row'>
 <div class='headerline'>
 </div>
 </div>
 </div>
+
+
+<!-- STUFF FOR USERS -->
+<% if session[:user_id] %>
+  <%logged_user = User.find(session[:user_id]).username%>
+  <small>logged in as <a href="/profile/<%=logged_user%>"><%=logged_user%></a></small>
+  <small><a href="/logout">Logout</a></small>
+<% end %>
+
+<!-- END STUFF FOR USERS -->
 
 
 
@@ -26,7 +35,7 @@
 
 
 <!-- MAIN PHOTO DISPLAY -->
-
+<% @photos.reverse! %>
 <div class="container">
   <% @photos.each_slice(3).to_a.each do |photo_row| %>
     <div class="row borderz container">

@@ -43,12 +43,18 @@
             <ul class="dropdown-menu" role="menu">
               <%tags = Tag.all%>
               <% tags.sort_by!{|tag| tag.photos.size} %>
-              <% t1 = tags.pop.name %>
-              <% t2 = tags.pop.name %>
-              <% t3 = tags.pop.name %>
-              <li><a href='/photos/tag/<%= t1 %>'><%= t1 %></a></li>
-              <li><a href='/photos/tag/<%= t2 %>'><%= t2 %></a></li>
-              <li><a href='/photos/tag/<%= t3 %>'><%= t3 %></a></li>
+              <% t = [] %>
+              <% 7.times do |i| %>
+                <% h = tags.pop.name %>
+                <% t << h if !h.empty?%>
+              <% end %>
+              <li><a href='/photos/tag/<%= t[0] %>'><%= t[0] %></a></li>
+              <li><a href='/photos/tag/<%= t[1] %>'><%= t[1] %></a></li>
+              <li><a href='/photos/tag/<%= t[2] %>'><%= t[2] %></a></li>
+
+              <li><a href='/photos/tag/<%= t[3] %>'><%= t[3] %></a></li>
+              <li><a href='/photos/tag/<%= t[4] %>'><%= t[4] %></a></li>
+
             </ul>
           </li>
         </ul>
