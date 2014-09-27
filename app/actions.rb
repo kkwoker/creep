@@ -18,6 +18,7 @@ def sanitize_filename(filename)
   filename.gsub(/[^\w\.\-]/,"_")
 end
 
+
 # Homepage (Root path)
 get '/' do
   erb :index
@@ -81,6 +82,7 @@ end
 
 # Gets the tag information and redirect to filtered photos page
 get '/photos/tag' do
+
   redirect '/photos/tag/' + params[:tags]
 end
 
