@@ -57,12 +57,16 @@
   background-color:#ce0100;
 }
 
+.photo-shadow{
+  -webkit-box-shadow: 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow:  10px 5px 0px rgba(0,0,0,0.75);
+}
 .borderz{
   margin-bottom: 50px;
 }
 
 img {
-
 	width: 100;
 	height: 100;
 }
@@ -75,6 +79,8 @@ img {
   background-size: cover;
   height: 300px;
   width: 300px;
+  border-style: style;
+  border-spacing: 2px;
 }
 
 .comment-text {

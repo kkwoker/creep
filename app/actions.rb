@@ -72,13 +72,21 @@ post '/photos' do
   tagnames = params[:tags].split(/\W/).keep_if{|t| !t.empty?}
 
   tagnames.each do |tagname|
-    t = to_tag(tagname) 
+    t = to_tag(tagname)
     photo.tags << t if t.name
   end
 
   redirect '/photos'
 
 end
+
+# rate photos
+post '/rate' do
+  rate = Photo.find(params[:id]).update(rating: params[:rating]
+                                        )
+  redirect '/photos/' + params[:id]
+end
+
 
 
 
@@ -104,6 +112,10 @@ get '/photos/tag/:tag_names' do
   erb :'/photo/main'
 
 end
+
+
+
+
 
 # Show photo with id = #
 get '/photos/:id' do
@@ -131,7 +143,7 @@ post '/tag' do
   tag_arr.each do |tag_name|
     t = to_tag(tag_name)
     if !photo.tags.include? t
-      photo.tags << t 
+      photo.tags << t
       photo.save
     end
   end
