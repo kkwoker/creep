@@ -68,10 +68,11 @@ post '/photos' do
                     )
 
   photo.save
-  tagnames = params[:tags].split(/\W/)
+  tagnames = params[:tags].split(/\W/).keep_if{|t| !t.empty?}
 
   tagnames.each do |tagname|
-    photo.tags << to_tag(tagname)
+    t = to_tag(tagname) 
+    photo.tags << t if t.name
   end
 
   redirect '/photos'
@@ -93,7 +94,7 @@ end
 get '/photos/tag/:tag_names' do
   @photos = Photo.all
   @tags =[]
-  params[:tag_names].split(/\W/).each do |tag|
+  params[:tag_names].split(/\W/).keep_if{|t| !t.empty?}.each do |tag|
     t = to_tag(tag)
     @tags << t
     @photos.keep_if { |photo| photo.tags.include? t}
@@ -124,11 +125,11 @@ end
 # add tag on the show page
 post '/tag' do
   photo = Photo.find(params[:photo_id])
-  tag_arr = params[:tagname].split(/\W/)
+  tag_arr = params[:tagname].split(/\W/).keep_if{|t| !t.empty?}
   tag_arr.each do |tag_name|
     t = to_tag(tag_name)
     if !photo.tags.include? t
-      photo.tags << t
+      photo.tags << t 
       photo.save
     end
   end
@@ -163,7 +164,7 @@ post '/login' do
 end
 
 get '/logout' do
-  session.clear
+  session[:user_id] = nil
   redirect '/photos'
 end
 
