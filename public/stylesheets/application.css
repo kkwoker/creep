@@ -1,6 +1,7 @@
-.creepr-header{
-
-  
+.headerline{
+  margin-bottom: 30px;
+  margin-left: 50px;
+  margin-right:50px;
 }
 
 
@@ -89,6 +90,7 @@ img {
 }
 
 .comment-text {
+  padding-top:10px;
   font-size: 18px;
   white-space: nowrap;
 

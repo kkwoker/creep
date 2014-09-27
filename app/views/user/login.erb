@@ -4,7 +4,7 @@
   oops, <%=User.find(session[:user_id])[:username] %>
 <a href="/logout">Logout</a>
 <% else %>
-  <h1>Log in here!</h1>
+  <h1 style='padding: 20px'> Login here!</h1>
   <% if @error %>
      Incorrect credentials 
   <% end %>

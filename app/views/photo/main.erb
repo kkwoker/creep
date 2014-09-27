@@ -1,9 +1,10 @@
-<!-- Title -->
-<div class='creepr-header'>
-<h1>creepr main page<h1>
-</h1>
+<div class='container'>
+<div class='row'>
+<div class='headerline'>
 </div>
-<!-- end of title -->
+</div>
+</div>
+
 
 <!-- STUFF FOR USERS -->
 <% if session[:user_id] %>
@@ -15,26 +16,29 @@
 <!-- END STUFF FOR USERS -->
 
 
-<p> 
+
 <%@tags && @tags.each do |tag|%>
-  <%= tag.name %>
-
-  <small><a href="/photos/tag/<%=(@tags.map(&:name) - [tag.name]).join(',')%>">remove.</a></small>
-
-  <%if session[:user_id] %>
-  <small><form method="post" action="/subscribe"><input type="hidden" name="tagid" value="<%=tag.id%>">
-  <button type='submit' >subscribe</button></small>
-  <% end %>
-
+  <div class='container col-md-2'>
+    <h3 class='col-md-4'><%= tag.name %>
+      <a href="/photos/tag/<%=(@tags.map(&:name) - [tag.name]).join(',')%>">remove.</a>
+      <%if session[:user_id] %>
+        <form method="post" action="/subscribe"><input type="hidden" name="tagid" value="<%=tag.id%>">
+        <button type='submit'>subscribe</button>
+      <% end %>
+    </h3>
+  </div>
 <% end %>
-</p>
+
+<!-- empty container to seperate the tags from photos -->
+<div class='container'></div>
+
 
 
 <!-- MAIN PHOTO DISPLAY -->
 <% @photos.reverse! %>
 <div class="container">
   <% @photos.each_slice(3).to_a.each do |photo_row| %>
-    <div class="row borderz">
+    <div class="row borderz container">
     <% photo_row.each do |photo| %>
      <div class="col-xs-12 col-sm-6 col-md-4">
       <a href='/photos/<%= photo.id %>' style='background-image: url(/uploads/<%= photo.filename%>);' class="thumb img-responsive img-thumbnail photo-shadow" alt="Responsive image"/></a>
