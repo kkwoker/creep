@@ -45,7 +45,6 @@ end
 # Create a new photos
 post '/photos' do
 
-  binding.pry
   # if the photo is invalid, reload page and post error
   if !(params[:photo] && is_picture?(params[:photo][:filename]))
     # set an error flag to display "Was not an image file" to the form
@@ -64,11 +63,12 @@ post '/photos' do
 
   photo = Photo.new(title: params[:title],
                     rating: 0,
-                    filename: fname
+                    filename: fname,
+                    user_id: session[:user_id]
                     )
 
   photo.save
-  tagnames = params[:tags].split(/W/)
+  tagnames = params[:tags].split(/\W/)
 
   tagnames.each do |tagname|
     photo.tags << to_tag(tagname)
@@ -168,6 +168,8 @@ get '/logout' do
 end
 
 get '/profile/:username' do
+  @user = User.find_by(username: params[:username])
+  @user_photos = Photo.where(user_id: @user.id)
   erb :'user/profile'
 end
 
