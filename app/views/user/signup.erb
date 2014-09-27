@@ -1,11 +1,11 @@
 
-<h1>Signup!</h1>
+<h1 style='padding: 20px'>Signup!</h1>
 
 <%if @error%>
   username already taken
 <%end%>
 
-<form id="login-form" method="post" action="/signup">
+<form method="post" action="/signup">
   <div class="row" style='padding: 25px;'>
     <div class="col-md-3 col-xs-12">
       <label>Desired Username:</label>
@@ -16,9 +16,10 @@
         <input type="password" name="password" class="form-control">
     </div>
   </div>
-</form>
+
 <div class="row" style="padding:25px;">
   <div class="col-md-3 col-xs-12">
-    <button form="signup-form" type="submit" class='btn btn-danger'>Sign Up</button>
+    <button type="submit" class='btn btn-danger'>Sign Up</button>
   </div>
 </div>
+</form>
