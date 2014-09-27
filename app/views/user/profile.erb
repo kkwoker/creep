@@ -1,12 +1,19 @@
 
 
 PROFILE FOR : 
-
-<%= logged_user = User.find(session[:user_id]).username%>
+<% logged_user = User.find(session[:user_id]) %>
+<%=  logged_user.username%>
 <a href="/photos"> Back </a>
-<p>
-<!-- MAIN PHOTO DISPLAY -->
 
+<form method="post" action="/addYOusername">
+  <small><%=logged_user.yo_username%></small>
+  <input type="text" name="YOname" >
+  <button type='submit'>save YO username</button>
+</form>
+
+
+<!-- MAIN PHOTO DISPLAY -->
+<p>
 <div class="container">
   <% @user_photos.each_slice(3).to_a.each do |photo_row| %>
     <div class="row borderz">
