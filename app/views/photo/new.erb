@@ -1,52 +1,3 @@
-<!-- NAV BAR -->
-  <header>
-    <div class='container'>
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Creepr</a>
-          </div>
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="/about">About</a></li>
-            </ul>
-            <!-- Search BY Tag -->
-            <form class="navbar-form navbar-left" role="search" method="get" action="/photos/tag">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search by Tag" name="tags" required>
-              </div>
-              <button type="submit" class="btn btn-default" value="filter">Search</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/photos">Home</a></li>
-              <li><a href="/photos/new">Add Photo</a></li>
-              <li class="dropdown">
-              <!--Popular tags -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Popular Tags<span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <%tags = Tag.all%>
-                  <% tags.sort_by!{|tag| tag.photos.size} %>
-                  <% t1 = tags.pop.name %>
-                  <% t2 = tags.pop.name %>
-                  <% t3 = tags.pop.name %>
-                  <li><a href='/photos/tag/<%= t1 %>'><%= t1 %></a></li>
-                  <li><a href='/photos/tag/<%= t2 %>'><%= t2 %></a></li>
-                  <li><a href='/photos/tag/<%= t3 %>'><%= t3 %></a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
-    </div>
-  </header>
 
 Add a photo page
 <a href="/photos"> Back </a>
@@ -55,10 +6,30 @@ Add a photo page
 	<p> That was not an image file! only .jpg .png .gif .bng extensions allowed </p>
 <% end %>
 
-<!-- Post a photo form -->
-<form method="post" action="/photos" enctype='multipart/form-data' runat="server" onsubmit="return checkSize(2097152)">
 
-  <div>
+<form method="post" action="/photos" enctype='multipart/form-data' runat="server" onsubmit="return checkSize(2097152)">
+  <div class="row" style='padding: 25px;'>
+    <div class="col-md-6 col-xs-12">
+      <label>Title:</label>
+      <input type="text" name="title"class="form-control">
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <label>Tag(s) seperate by ',' : </label>
+        <input type="text" name="tags" class="form-control">
+    </div>
+  </div>
+  <div class='col-md-6 col-sm-8 col-xs-12' style='margin-left:25px' >
+   <label>photo:</label>
+    <input type="file" name="photo" id="imgInp"  accept=".jpg,.gif,.png" required> 
+    <img id="blah" src="" width="300" height="300" style='margin-top: 10px'/>
+    <button type='submit'  class="btn btn-primary btn-lg">GET YOUR CREEP ON</button>
+  </div>
+</form>
+
+<!-- Post a photo form -->
+<!-- <form method="post" action="/photos" enctype='multipart/form-data' runat="server" onsubmit="return checkSize(2097152)"> -->
+
+<!--   <div>
     <label>Title:</label>
     <input type="text" name="title">
   </div>
@@ -66,7 +37,7 @@ Add a photo page
   <div>
     <label>photo:</label>
     <input type="file" name="photo" id="imgInp"  accept=".jpg,.gif,.png" required> 
-    <img id="blah" src="#" alt="your image" width="100" height="100"/>
+    <img id="blah" src="" width="100" height="100"/>
   </div>
 
 
@@ -80,13 +51,4 @@ Add a photo page
   </div>
 </form>
 
-
-
-
-
-<iframe
-  width="450"
-  height="250"
-  frameborder="0" style="border:0"
-  src="https://www.google.com/maps/embed/v1/search?key=AIzaSyAb7euE06VgQhEbFwPExmEzZUVjxy70uPk&q=Vancouver">
-</iframe>
+ -->
