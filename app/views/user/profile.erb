@@ -49,6 +49,32 @@
   </header>
 
 PROFILE FOR : 
-<%=User.find(session[:user_id]).username%>
+
+<%= logged_user = User.find(session[:user_id]).username%>
+<a href="/photos"> Back </a>
+<p>
+<!-- MAIN PHOTO DISPLAY -->
+
+<div class="container">
+  <% @user_photos.each_slice(3).to_a.each do |photo_row| %>
+    <div class="row borderz">
+    <% photo_row.each do |photo| %>
+     <div class="col-xs-12 col-sm-6 col-md-4">
+      <a href='/photos/<%= photo.id %>' style='background-image: url(/uploads/<%= photo.filename%>);' class="thumb img-responsive img-thumbnail" alt="Responsive image"/></a>
+      <div class='row'>
+      <div class='rating-text'>rating</div>
+        <div class='comment-text'>     
+          <% if photo.most_recent_comment %>
+            <%= photo.most_recent_comment.body %> 
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+ <% end %>
+</div>
 
 
+
+</p>
