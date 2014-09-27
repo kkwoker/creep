@@ -83,7 +83,7 @@ post '/photos' do
 
   photo.save
   tagnames = params[:tags].split(/\W/).keep_if{|t| !t.empty?}
-
+  tagnames << params[:title]
   tagnames.each do |tagname|
     t = to_tag(tagname) 
     photo.tags << t 
