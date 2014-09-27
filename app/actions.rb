@@ -5,12 +5,12 @@ def yo_subscribers(tag)
   # get list of subscribers from tag_subscriptions
   tag_subs = TagSubscription.where(tag_id: tag.id)
   yo_subbers = tag_subs.map { |ts| User.find(ts.user_id).yo_username}
-  
+
   # yo them all
   yo_subbers.each do |y|
     system "curl --data \"api_token=53463db4-646c-1220-da20-8b2d73de9fec&username=#{y}&link=http://optional-link.com\" http://api.justyo.co/yo/"
   end
-  
+
 end
 
 def is_picture?(filename)
@@ -85,17 +85,27 @@ post '/photos' do
   tagnames = params[:tags].split(/\W/).keep_if{|t| !t.empty?}
   tagnames << params[:title]
   tagnames.each do |tagname|
-    t = to_tag(tagname) 
-    photo.tags << t 
+
+    t = to_tag(tagname)
+    photo.tags << t
 
     # YO all users subscribed to this tag
     yo_subscribers(t)
+
   end
 
 
   redirect '/photos'
 
 end
+
+# rate photos
+post '/rate' do
+  rate = Photo.find(params[:id]).update(rating: params[:rating]
+                                        )
+  redirect '/photos/' + params[:id]
+end
+
 
 
 
@@ -121,6 +131,10 @@ get '/photos/tag/:tag_names' do
   erb :'/photo/main'
 
 end
+
+
+
+
 
 # Show photo with id = #
 get '/photos/:id' do
@@ -148,7 +162,7 @@ post '/tag' do
   tag_arr.each do |tag_name|
     t = to_tag(tag_name)
     if !photo.tags.include? t
-      photo.tags << t 
+      photo.tags << t
       photo.save
     end
   end

@@ -6,7 +6,7 @@
 </p>
 
 <p>
-  Tags: tags go here...
+  Tags:  
 
   <% @photo.tags.each do |tag|%>
   <%= tag.name %>
@@ -17,6 +17,17 @@
 <% @photo.comments.each do |comment| %>
   <p> <%= comment.body %> </p>
 <% end %>
+
+<!-- rating stars -->
+<form action="/rate" method="post">
+<!-- the stars are here in an empty div -->
+  <div class='rating-text'>rating</div>
+  <div class="rate" name="raty"  style='margin-left: 20px;'></div>
+<!-- this is the hidden input that raty sends the data to -->    
+  <input type="number" name="rating" style="display:none;" id="rating">
+  <input type="text" style="display:none;" name="id" value="<%= @photo.id %>">
+  <input type="submit"  style='margin-left: 20px;'>
+</form>
 
 <!-- Comment submission form  -->
 <form action='/comment' method='post'>
@@ -45,4 +56,24 @@
   </div>
 </form>
 
-<p><a href="/photos"> Back </a></p>
+
+<!-- JAVA script for stars -->
+<script>
+      //FOR THE FORM SELECTABLE STARS
+  $('.rate').raty({
+    click: function(score, evt) {
+      $('#rating').val(score)
+    }});
+ 
+ 
+//FOR THE STATIC STARS
+  $.each($('.rating'), function( index, object ) {  
+    $(object).raty({ 
+      readOnly: true, 
+      number: 5,
+    // grabs the 'data-score' for div class="rating" and sets the number of stars  
+      score: $(object).attr('data-score')  
+    });
+  });
+</script>
+

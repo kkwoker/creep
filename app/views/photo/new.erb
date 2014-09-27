@@ -1,12 +1,6 @@
-
-Add a photo page
-<a href="/photos"> Back </a>
-
 <% if @error %>
 	<p> That was not an image file! only .jpg .png .gif .bng extensions allowed </p>
 <% end %>
-
-
 <form method="post" action="/photos" enctype='multipart/form-data' runat="server" onsubmit="return checkSize(2097152)">
   <div class="row" style='padding: 25px;'>
     <div class="col-md-6 col-xs-12">
@@ -25,30 +19,3 @@ Add a photo page
     <button type='submit'  class="btn btn-primary btn-lg">GET YOUR CREEP ON</button>
   </div>
 </form>
-
-<!-- Post a photo form -->
-<!-- <form method="post" action="/photos" enctype='multipart/form-data' runat="server" onsubmit="return checkSize(2097152)"> -->
-
-<!--   <div>
-    <label>Title:</label>
-    <input type="text" name="title">
-  </div>
-
-  <div>
-    <label>photo:</label>
-    <input type="file" name="photo" id="imgInp"  accept=".jpg,.gif,.png" required> 
-    <img id="blah" src="" width="100" height="100"/>
-  </div>
-
-
-  <div>
-    <label>Tag(s), separate by ',':</label>
-    <input type="text" name="tags" >
-  </div>
-
-  <div>
-    <input type="submit" value="Upload" >
-  </div>
-</form>
-
- -->

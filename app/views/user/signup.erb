@@ -1,26 +1,24 @@
 
-  
-
 <h1>Signup!</h1>
 
 <%if @error%>
   username already taken
 <%end%>
 
-<form method="post" action="/signup">
-
-  <div>
-    <label>Username:</label>
-    <input type="text" name="username" required>
-  </div>
-
-  <div>
-    <label>Password:</label>
-    <input type="password" name="password" required>
-  </div>
-
-  <div>
-    <input type="submit" value="Signup" >
-    
+<form id="login-form" method="post" action="/signup">
+  <div class="row" style='padding: 25px;'>
+    <div class="col-md-3 col-xs-12">
+      <label>Desired Username:</label>
+      <input type="text" name="username" required class="form-control">
+    </div>
+    <div class="col-md-3 col-xs-12">
+      <label>Password:</label>
+        <input type="password" name="password" class="form-control">
+    </div>
   </div>
 </form>
+<div class="row" style="padding:25px;">
+  <div class="col-md-3 col-xs-12">
+    <button form="signup-form" type="submit" class='btn btn-danger'>Sign Up</button>
+  </div>
+</div>

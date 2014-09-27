@@ -10,13 +10,26 @@
         </button>
         <a class="navbar-brand" href="/photos">Creepr</a>
       </div>
+
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/about">About</a></li>
+
+        <ul class="nav navbar-header navbar-nav">
+          <li class='active'>
+            <%if session[:user_id]%>
+              <%logged_user = User.find(session[:user_id]).username%>
+                  <ul class="dropdown-menu" role="menu"></ul>
+                  <li><a href="/profile/<%=logged_user%>"><%=logged_user%></a></li>
+                  <li><a href="/logout">Logout</a></li>
+            <% else %>
+                    <a href="/login"> Login </a>
+            <% end %>
+          </li>
         </ul>
+
+
         <!-- Search BY Tag -->
-        <form class="navbar-form navbar-left" role="search" method="get" action="/photos/tag">
+        <form class="navbar-form navbar-left" method="get" action="/photos/tag">
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Search by Tag" name="tags" required>
           </div>
@@ -28,20 +41,19 @@
           <!--Popular tags -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Popular Tags<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-            
               <%tags = Tag.all%>
               <% tags.sort_by!{|tag| tag.photos.size} %>
+              <% t = [] %>
+              <% 7.times do |i| %>
+                <% h = tags.pop.name %>
+                <% t << h if !h.empty?%>
+              <% end %>
+              <li><a href='/photos/tag/<%= t[0] %>'><%= t[0] %></a></li>
+              <li><a href='/photos/tag/<%= t[1] %>'><%= t[1] %></a></li>
+              <li><a href='/photos/tag/<%= t[2] %>'><%= t[2] %></a></li>
 
-              <% t1 = tags.pop.name %>
-              <% t2 = tags.pop.name %>
-              <% t3 = tags.pop.name %>
-              <% t4 = tags.pop.name %>
-              <% t5 = tags.pop.name %>
-              <li><a href='/photos/tag/<%= t1 %>'><%= t1 %></a></li>
-              <li><a href='/photos/tag/<%= t2 %>'><%= t2 %></a></li>
-              <li><a href='/photos/tag/<%= t3 %>'><%= t3 %></a></li>
-              <li><a href='/photos/tag/<%= t4 %>'><%= t4 %></a></li>
-              <li><a href='/photos/tag/<%= t5 %>'><%= t5 %></a></li>
+              <li><a href='/photos/tag/<%= t[3] %>'><%= t[3] %></a></li>
+              <li><a href='/photos/tag/<%= t[4] %>'><%= t[4] %></a></li>
 
             </ul>
           </li>
