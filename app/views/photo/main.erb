@@ -40,6 +40,7 @@
       <a href='/photos/<%= photo.id %>' style='background-image: url(/uploads/<%= photo.filename%>);' class="thumb img-responsive img-thumbnail photo-shadow" alt="Responsive image"/></a>
       <div class='row'>
         <div class='comment-text'>     
+          <div ><%=photo.rating%></div>
           <% if photo.most_recent_comment %>
             <%= photo.most_recent_comment.body %> 
           <% end %>

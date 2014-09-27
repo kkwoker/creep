@@ -5,7 +5,13 @@
 PROFILE FOR : 
 <% logged_user = User.find(session[:user_id]) %>
 <%= logged_user.username%>
-
+<p>
+  <% total = 0 %>
+  <% logged_user.photos.each do |photo| %>
+    <% total += photo[:rating] %>
+  <% end %>
+  total number of stars: <%=total%>
+</p>
 <form method="post" action="/addYOusername">
   YO Username: <small><%=logged_user.yo_username%></small>
   <div>
@@ -25,7 +31,7 @@ Photo's I've posted:
      <div class="col-xs-12 col-sm-6 col-md-4">
       <a href='/photos/<%= photo.id %>' style='background-image: url(/uploads/<%= photo.filename%>);' class="thumb img-responsive img-thumbnail" alt="Responsive image"/></a>
       <div class='row'>
-      <div class='rating-text'>rating</div>
+      <div class='rating-text'><%=photo.rating%></div>
         <div class='comment-text'>     
           <% if photo.most_recent_comment %>
             <%= photo.most_recent_comment.body %> 
