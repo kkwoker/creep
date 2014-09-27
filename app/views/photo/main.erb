@@ -1,9 +1,4 @@
 
-
-
-
-
-
 <%@tags && @tags.each do |tag|%>
   <div class='container col-md-2'>
     <h3 class='col-md-4'><%= tag.name %>
@@ -19,8 +14,6 @@
 <!-- empty container to seperate the tags from photos -->
 <div class='container'></div>
 
-
-
 <!-- MAIN PHOTO DISPLAY -->
 <% @photos.reverse! %>
 <div class="container">
@@ -33,7 +26,7 @@
         <div class='comment-box'>     
           &nbsp<span class='ratingfont'> creep score: &nbsp&nbsp<span class='ratingcolor'><%=photo.rating%></span></span>
           <% if photo.most_recent_comment %>
-            <p class='comment-text'>&nbsp&nbspJudgement:  <%= photo.most_recent_comment.body %> </p>
+            <p class='comment-text'>&nbsp&nbspWiseCrack:  <%= photo.most_recent_comment.body %> </p>
           <% end %>
         </div>
       </div>
