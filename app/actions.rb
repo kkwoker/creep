@@ -1,5 +1,18 @@
 enable :sessions
 
+def yo_subscribers(tag)
+
+  # get list of subscribers from tag_subscriptions
+  tag_subs = TagSubscription.where(tag_id: tag.id)
+  yo_subbers = tag_subs.map { |ts| User.find(ts.user_id).yo_username}
+  
+  # yo them all
+  yo_subbers.each do |y|
+    system "curl --data \"api_token=53463db4-646c-1220-da20-8b2d73de9fec&username=#{y}&link=http://optional-link.com\" http://api.justyo.co/yo/"
+  end
+  
+end
+
 def is_picture?(filename)
   filename =~ /([^\s]+(\.(?i)(JPG|jpg|PNG|png|GIF|gif|BMP|bmp))$)/
 end
@@ -73,8 +86,12 @@ post '/photos' do
 
   tagnames.each do |tagname|
     t = to_tag(tagname) 
-    photo.tags << t if t.name
+    photo.tags << t 
+
+    # YO all users subscribed to this tag
+    yo_subscribers(t)
   end
+
 
   redirect '/photos'
 
@@ -191,4 +208,20 @@ post '/signup' do
     @error = true
     erb :'/user/signup'
   end
+end
+
+# YO STUFF
+post '/subscribe' do
+  logged_user = User.find(session[:user_id])
+  TagSubscription.new(user_id: logged_user.id, tag_id: params[:tagid]).save
+  redirect '/photos'
+end
+
+post '/addYOusername' do
+  user = User.find(session[:user_id])
+  user.yo_username = params[:YOname]
+  user.save
+
+  redirect '/profile/' + user.username
+
 end

@@ -23,7 +23,13 @@
 <%@tags && @tags.each do |tag|%>
   <%= tag.name %>
 
-  <small><a href="/photos/tag/<%=(@tags.map(&:name) - [tag.name]).join(',')%>"> remove        .</a></small>
+  <small><a href="/photos/tag/<%=(@tags.map(&:name) - [tag.name]).join(',')%>">remove.</a></small>
+
+  <%if session[:user_id] %>
+  <small><form method="post" action="/subscribe"><input type="hidden" name="tagid" value="<%=tag.id%>">
+  <button type='submit' >subscribe</button></small>
+  <% end %>
+
 <% end %>
 </p>
 
