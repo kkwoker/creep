@@ -13,21 +13,27 @@
   <% end %>
 
 </p>
+<p>
+CreepScore: <%=@photo.rating %>
+</p>
 <p>Comments:</p>
 <% @photo.comments.each do |comment| %>
   <p> <%= comment.body %> </p>
 <% end %>
 
-<!-- rating stars -->
-<form action="/rate" method="post">
-<!-- the stars are here in an empty div -->
-  <div class='rating-text'>rating</div>
-  <div class="rate" name="raty"  style='margin-left: 20px;'></div>
-<!-- this is the hidden input that raty sends the data to -->    
-  <input type="number" name="rating" style="display:none;" id="rating">
-  <input type="text" style="display:none;" name="id" value="<%= @photo.id %>">
-  <input type="submit"  style='margin-left: 20px;'>
-</form>
+<% if session[:user_id]%>
+  <!-- rating stars -->
+  <form action="/rate" method="post">
+  <!-- the stars are here in an empty div -->
+    <div class='rating-text'>rating</div>
+    <div class="rate" name="raty"  style='margin-left: 20px;'></div>
+  <!-- this is the hidden input that raty sends the data to -->    
+    <input type="number" name="rating" style="display:none;" id="rating">
+    <input type="text" style="display:none;" name="id" value="<%= @photo.id %>">
+    <input type="submit"  style='margin-left: 20px;'>
+  </form>
+
+<% end %>
 
 <!-- Comment submission form  -->
 <form action='/comment' method='post'>
