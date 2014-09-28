@@ -6,6 +6,13 @@ PROFILE FOR :
 <% logged_user = User.find(session[:user_id]) %>
 <%= logged_user.username%>
 <p>
+Tags subscribed to: 
+
+<%logged_user.tag_subscriptions.each do |tag_sub|%>
+  <%= Tag.find(tag_sub.tag_id).name %>
+<% end %>
+</p>
+<p>
   <% total = 0 %>
   <% logged_user.photos.each do |photo| %>
     <% total += photo[:rating] %>
