@@ -1,70 +1,71 @@
+<!-- title -->
+<h1 class='textcolor' style='padding-left: 50px'><%= @photo.title %></h1>
 
-<h1 class='textcolor'><%= @photo.title %></h1>
 
-<p>
-  <img src ="/uploads/<%=@photo.filename%>" width="100" height="100"/>
-</p>
 
-<p>
-  Tags:  
+<!-- picture -->
 
-  <% @photo.tags.each do |tag|%>
-  <%= tag.name %>
-  <% end %>
+<div class='showpicture'>
+  <img class='imgborder' src ="/uploads/<%=@photo.filename%>" height='auto' width='600'/>
+</div>
 
-</p>
-<p>
-CreepScore: <%=@photo.rating %>
-</p>
-<p>Comments:</p>
-<% @photo.comments.each do |comment| %>
-  <p> <%= comment.body %> 
-  :<%=comment.created_at.month%>-<%=comment.created_at.day%>
+<!-- tags -->
+<div class='rightshow'>
+  <h1 class='textcolor'>Tags: 
+    <% @photo.tags.each do |tag|%>
+    <%= tag.name %>
+    <% end %>
+  </h1> 
+  <!-- comments -->
+  <h4 class='textcolor'>
+   CreepScore: <span class='ratingcolor'><%=@photo.rating %></span>
+  </h4>
+  <h3 class='textcolor'>Comments:
+    <% @photo.comments.each do |comment| %>
+      <p> <%= comment.body %> 
+        -<%=comment.created_at.month%>-<%=comment.created_at.day%>
+      </p>
+    <% end %>
+  </h3>
+    <!-- rating -->
+    <% if session[:user_id]%>
+      <!-- rating stars -->
+      <form action="/rate" method="post">
+      <!-- the stars are here in an empty div -->
+        <button type="submit"  class="btn btn-lrg btn-danger" style='margin-right: 20px; margin-top:20px'>Rate</button>
+          <span class="rate" name="raty"></span>
+          <!-- this is the hidden input that raty sends the data to -->    
+          <input type="number" name="rating" style="display:none;" id="rating">
+        <input type="text" style="display:none;" name="id" value="<%= @photo.id %>">
+      </form>
+    <% end %>
+  <!-- Comment submission form  -->
+  <form action='/comment' method='post'>
+    <input type="text" style="display:none;" name="photo_id" value="<%= @photo.id %>">
+      <label>Comment:</label>
+    <div class="form_box">
+      <textarea class="submissionfield" type="text" name="body" cols="40" rows="4" required maxlength="140" style="resize: none;"></textarea>
+    </div>
 
-  </p>
-<% end %>
-
-<% if session[:user_id]%>
-  <!-- rating stars -->
-  <form action="/rate" method="post">
-  <!-- the stars are here in an empty div -->
-    <div class='rating-text'>rating</div>
-    <div class="rate" name="raty"  style='margin-left: 20px;'></div>
-  <!-- this is the hidden input that raty sends the data to -->    
-    <input type="number" name="rating" style="display:none;" id="rating">
-    <input type="text" style="display:none;" name="id" value="<%= @photo.id %>">
-    <input type="submit"  style='margin-left: 20px;'>
+    <div class="submit_button">
+        <input type="submit" value="Submit">
+    </div>
   </form>
 
-<% end %>
 
-<!-- Comment submission form  -->
-<form action='/comment' method='post'>
-  <input type="text" style="display:none;" name="photo_id" value="<%= @photo.id %>">
-    <label>Comment:</label>
-  <div class="form_box">
-    <textarea class="submissionfield" type="text" name="body" cols="40" rows="4" required maxlength="140" style="resize: none;"></textarea>
-  </div>
+  <!-- Add a tag  -->
+  <form action='/tag' method='post'>
+    <input type="text" style="display:none;" name="photo_id" value="<%= @photo.id %>">
+      <label>Add tags separated by ',':</label>
+    <div class="form_box">
+      <input  type="text" name="tagname" cols="40" rows="4" required maxlength="140" style="resize: none;"></textarea>
+    </div>
 
-  <div class="submit_button">
-      <input type="submit" value="Submit">
-  </div>
-</form>
-
-
-<!-- Add a tag  -->
-<form action='/tag' method='post'>
-  <input type="text" style="display:none;" name="photo_id" value="<%= @photo.id %>">
-    <label>Add tags separated by ',':</label>
-  <div class="form_box">
-    <input  type="text" name="tagname" cols="40" rows="4" required maxlength="140" style="resize: none;"></textarea>
-  </div>
-
-  <div class="submit_button">
-      <input type="submit" value="Submit">
-  </div>
-</form>
-
+    <div class="submit_button">
+        <input type="submit" value="Submit">
+    </div>
+  </form>
+</div>
 
 <!-- JAVA script for stars -->
 <script>
