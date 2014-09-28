@@ -101,9 +101,13 @@ end
 
 # rate photos
 post '/rate' do
+  
   photo = Photo.find(params[:id])
   photo.rating += params[:rating].to_i
   photo.save
+
+  Rate.new(user_id: session[:user_id], photo_id: photo.id).save
+
   redirect '/photos/' + params[:id]
 end
 
