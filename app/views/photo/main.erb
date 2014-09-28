@@ -1,4 +1,4 @@
-
+<span class='textcolor'>
 <%@tags && @tags.each do |tag|%>
   <div class='container col-md-2'>
     <h3 class='col-md-4'><%= tag.name %>
@@ -10,6 +10,7 @@
     </h3>
   </div>
 <% end %>
+</span>
 
 <!-- empty container to seperate the tags from photos -->
 <div class='container'></div>
@@ -20,7 +21,7 @@
   <% @photos.each_slice(3).to_a.each do |photo_row| %>
     <div class="row borderz container">
     <% photo_row.each do |photo| %>
-     <div class="col-xs-12 col-sm-4 col-md-4">
+     <div class="col-lg-4 col-md-6 col-sm-12">
       <a href='/photos/<%= photo.id %>' style='background-image: url(/uploads/<%= photo.filename%>);' class="thumb img-responsive img-thumbnail photo-shadow" alt="Responsive image"/></a>
       <div class='row'>
         <div class='comment-box'>     
