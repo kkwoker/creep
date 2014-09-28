@@ -33,9 +33,11 @@ Photo's I've posted:
       <div class='row'>
       <div class='rating-text'><%=photo.rating%></div>
         <div class='comment-text'>     
-          <% if photo.most_recent_comment %>
-            <%= photo.most_recent_comment.body %> 
-          <% end %>
+          <form method="post" action="/delete_photo">
+          <input type="hidden" name="photo_id" value="<%=photo.id%>">
+          <input type="hidden" name="user_name" value="<%=logged_user.username%>">
+          <button type='submit'>delete</button>
+          </form>
         </div>
       </div>
     </div>
