@@ -18,7 +18,7 @@
 
 <!-- MAIN PHOTO DISPLAY -->
 <% @photos.reverse! %>
-<div class="container">
+<div class="container" >
   <% @photos.each_slice(3).to_a.each do |photo_row| %>
     <div class="row borderz container">
     <% photo_row.each do |photo| %>
@@ -36,7 +36,11 @@
           <div class='ratingfont'>&nbsp&nbsp&nbsp<%=tag_string%></div>
           &nbsp<span class='ratingfont'> creep score: &nbsp&nbsp<span class='ratingcolor'><%=photo.rating%></span></span>
           <% if photo.most_recent_comment %>
-            <p class='comment-text'>&nbsp&nbsp<%= photo.most_recent_comment.body %> </p>
+            <p class='comment-text'>&nbsp&nbsp<%= photo.most_recent_comment.body %></p>
+            
+            <p class='ratingfont ratingcolor' style="padding-left: 10px; margin-top: -10px;">Cracked On:&nbsp&nbsp<%=photo.most_recent_comment.created_at.month%>-<%=photo.most_recent_comment.created_at.day%></p>
+            
+
           <% end %>
         </div>
       </div>
