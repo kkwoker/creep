@@ -1,6 +1,4 @@
-
-
-
+<span class='textcolor'>
 <%@tags && @tags.each do |tag|%>
   <div class='container col-md-2'>
     <h3 class='col-md-4'><%= tag.name %>
@@ -12,6 +10,7 @@
     </h3>
   </div>
 <% end %>
+</span>
 
 <!-- empty container to seperate the tags from photos -->
 <div class='container'></div>
@@ -33,6 +32,7 @@
       <div class='row'>
         <div class='comment-box'>     
         <div class='ratingfont'></div>
+        <!-- work in here -->
         <div class='ratingfont'><%=tag_string%></div>
           &nbsp<span class='ratingfont'> creep score: &nbsp&nbsp<span class='ratingcolor'><%=photo.rating%></span></span>
           <% if photo.most_recent_comment %>

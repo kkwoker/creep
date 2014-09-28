@@ -2,9 +2,9 @@
   <a href="/photos"> Back </a>
 </div>
 
-PROFILE FOR : 
+
 <% logged_user = User.find(session[:user_id]) %>
-<%= logged_user.username%>
+<h3>PROFILE FOR : <%= logged_user.username%></h3>
 <p>
 Tags subscribed to: 
 

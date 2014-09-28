@@ -6,15 +6,15 @@
 <%if @error%>
   username already taken
 <%end%>
-
+<span class='textcolor'>
 <form method="post" action="/signup">
   <div class="row" style='padding: 25px;'>
     <div class="col-md-3 col-xs-12">
-      <label>Desired Username:</label>
+      <h3>Desired Username:</h3>
       <input type="text" name="username" required class="form-control">
     </div>
     <div class="col-md-3 col-xs-12">
-      <label>Password:</label>
+      <h3>Password:</h3>
         <input type="password" name="password" class="form-control">
     </div>
   </div>
