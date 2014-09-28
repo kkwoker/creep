@@ -24,10 +24,17 @@
   <% @photos.each_slice(3).to_a.each do |photo_row| %>
     <div class="row borderz container">
     <% photo_row.each do |photo| %>
+      <% t = [] %>
+      <% photo.tags.each do |tag| %>
+        <% t << tag.name %>
+      <% end %>
+      <% tag_string = t.join(',') %>
      <div class="col-xs-12 col-sm-4 col-md-4">
       <a href='/photos/<%= photo.id %>' style='background-image: url(/uploads/<%= photo.filename%>);' class="thumb img-responsive img-thumbnail photo-shadow" alt="Responsive image"/></a>
       <div class='row'>
         <div class='comment-box'>     
+        <div class='ratingfont'></div>
+        <div class='ratingfont'><%=tag_string%></div>
           &nbsp<span class='ratingfont'> creep score: &nbsp&nbsp<span class='ratingcolor'><%=photo.rating%></span></span>
           <% if photo.most_recent_comment %>
             <p class='comment-text'>&nbsp&nbsp<%= photo.most_recent_comment.body %> </p>
