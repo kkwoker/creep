@@ -83,7 +83,7 @@ post '/photos' do
 
   photo.save
   tagnames = params[:tags].split(/\W/).keep_if{|t| !t.empty?}
-  tagnames << params[:title]
+  
   tagnames.each do |tagname|
 
     t = to_tag(tagname)
@@ -240,3 +240,11 @@ post '/addYOusername' do
   redirect '/profile/' + user.username
 
 end
+
+
+post '/delete_photo' do
+  Photo.find(params[:photo_id]).destroy
+  redirect '/profile/' + params[:user_name]
+end
+
+

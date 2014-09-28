@@ -18,7 +18,10 @@ CreepScore: <%=@photo.rating %>
 </p>
 <p>Comments:</p>
 <% @photo.comments.each do |comment| %>
-  <p> <%= comment.body %> </p>
+  <p> <%= comment.body %> 
+  :<%=comment.created_at.month%>-<%=comment.created_at.day%>
+
+  </p>
 <% end %>
 
 <% if session[:user_id]%>
