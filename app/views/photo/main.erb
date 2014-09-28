@@ -5,7 +5,7 @@
       <a href="/photos/tag/<%=(@tags.map(&:name) - [tag.name]).join(',')%>">remove.</a>
       <%if session[:user_id] %>
         <form method="post" action="/subscribe"><input type="hidden" name="tagid" value="<%=tag.id%>">
-        <button type='submit'>subscribe</button>
+        <button type='submit' class='btn btn-danger'>subscribe</button>
       <% end %>
     </h3>
   </div>
