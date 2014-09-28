@@ -15,19 +15,17 @@
     <% @photo.tags.each do |tag|%>
     <%= tag.name %>
     <% end %>
+      <!-- Add a tag  -->
+  <form action='/tag' method='post'>
+    <input type="text" style="display:none;" name="photo_id" value="<%= @photo.id %>">
+      <h3 class='textcolor'>Add tags separated by ',':</h3 class='textcolor'>
+    <div class="form_box form-inline">
+      <input type="text" class="form-control" placeholder="Tags" style="width: 200px; resize: none;">
+      <button type="submit" value="Submit" class='btn btn-danger' style='margin-left: 20px;'>Add Tag</button>
+    </div>  
+  </form>
   </h1> 
-  <!-- comments -->
-  <h4 class='textcolor'>
-   CreepScore: <span class='ratingcolor'><%=@photo.rating %></span>
-  </h4>
-  <h3 class='textcolor'>Comments:
-    <% @photo.comments.each do |comment| %>
-      <p> <%= comment.body %> 
-        -<%=comment.created_at.month%>-<%=comment.created_at.day%>
-      </p>
-    <% end %>
-  </h3>
-    <!-- rating -->
+  <!-- rating -->
     <% if session[:user_id]%>
       <!-- rating stars -->
       <form action="/rate" method="post">
@@ -42,29 +40,31 @@
   <!-- Comment submission form  -->
   <form action='/comment' method='post'>
     <input type="text" style="display:none;" name="photo_id" value="<%= @photo.id %>">
-      <label>Comment:</label>
-    <div class="form_box">
-      <textarea class="submissionfield" type="text" name="body" cols="40" rows="4" required maxlength="140" style="resize: none;"></textarea>
-    </div>
-
-    <div class="submit_button">
-        <input type="submit" value="Submit">
-    </div>
+      <h4 class='textcolor'>WiseCrack:</h4>
+        <div class="form_box">
+          <textarea class="form-control" type="text" name="body" cols="40" rows="4" required maxlength="140" style="width: 400px; resize: none;" placeholder="WiseCracks..."></textarea>
+        </div>
+        <div style='padding-top: 20px'
+>          <button type="submit" value="Submit" class='btn btn-danger' style='border-top: 30px;'>Make a WiseCrack</button>
+        </div> 
   </form>
 
 
-  <!-- Add a tag  -->
-  <form action='/tag' method='post'>
-    <input type="text" style="display:none;" name="photo_id" value="<%= @photo.id %>">
-      <label>Add tags separated by ',':</label>
-    <div class="form_box">
-      <input  type="text" name="tagname" cols="40" rows="4" required maxlength="140" style="resize: none;"></textarea>
-    </div>
 
-    <div class="submit_button">
-        <input type="submit" value="Submit">
-    </div>
-  </form>
+  <!-- comments -->
+  <div class='show-box'>
+    <h3 class='textcolor'>
+     CreepScore: <span class='ratingcolor'><%=@photo.rating %></span>
+    </h3>
+    <h4 class='textcolor'>WiseCracks:
+    <p>&nbsp</p>
+      <% @photo.comments.each do |comment| %>
+        <p> <%= comment.body %> 
+          <p class='ratingfont ratingcolor'>Cracked On:&nbsp&nbsp<%=comment.created_at.month%>-<%=comment.created_at.day%></p>
+        </p>
+      <% end %>
+    </h4>
+  </div>
 </div>
 
 <!-- JAVA script for stars -->
