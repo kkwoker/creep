@@ -1,51 +1,66 @@
-<div>
-  <a href="/photos"> Back </a>
+<span class='textcolor'>
+
+
+<div class="comment-box" style="text-align: center;">
+  <% logged_user = User.find(session[:user_id]) %>
+  <h3 class='text-color'>PROFILE FOR : <%= logged_user.username%></h3>
+  <p>
+    Tags subscribed to: 
+
+    <%logged_user.tag_subscriptions.each do |tag_sub|%>
+      <span class='ratingcolor'><%= Tag.find(tag_sub.tag_id).name %></span>
+    <% end %>
+  </p>
+  <p >
+    <% total = 0 %>
+    <% logged_user.photos.each do |photo| %>
+      <% total += photo[:rating] %>
+    <% end %>
+    creep score: <span class='ratingcolor'><%=total%></span>
+  </p>
+  <form method="post" action="/addYOusername">
+    <small>YO me at: </small><span class='ratingcolor'> <%=logged_user.yo_username%></span>
+    
+    <input type="text" name="YOname" >
+    
+    <button type='submit' class='btn btn-danger'>save YO username</button>
+  </form>
 </div>
 
-
-<% logged_user = User.find(session[:user_id]) %>
-<h3>PROFILE FOR : <%= logged_user.username%></h3>
-<p>
-  <% total = 0 %>
-  <% logged_user.photos.each do |photo| %>
-    <% total += photo[:rating] %>
-  <% end %>
-  total number of stars: <%=total%>
-</p>
-<form method="post" action="/addYOusername">
-  YO Username: <small><%=logged_user.yo_username%></small>
-  <div>
-  <input type="text" name="YOname" >
-  </div>
-  <button type='submit'>save YO username</button>
-</form>
-
-Photo's I've posted:
 <!-- MAIN PHOTO DISPLAY -->
 <p>
-<% @user_photos.reverse! %>
-<div class="container">
-  <% @user_photos.each_slice(3).to_a.each do |photo_row| %>
-    <div class="row borderz">
-    <% photo_row.each do |photo| %>
-     <div class="col-xs-12 col-sm-6 col-md-4">
-      <a href='/photos/<%= photo.id %>' style='background-image: url(/uploads/<%= photo.filename%>);' class="thumb img-responsive img-thumbnail" alt="Responsive image"/></a>
-      <div class='row'>
-      <div class='rating-text'><%=photo.rating%></div>
-        <div class='comment-text'>     
-          <form method="post" action="/delete_photo">
-          <input type="hidden" name="photo_id" value="<%=photo.id%>">
-          <input type="hidden" name="user_name" value="<%=logged_user.username%>">
-          <button type='submit'>delete</button>
-          </form>
+  <% @user_photos.reverse! %>
+  <div class="container">
+    <% @user_photos.each_slice(3).to_a.each do |photo_row| %>
+      <div class="row borderz">
+      <% photo_row.each do |photo| %>
+       <div class="col-xs-12 col-sm-6 col-md-4">
+        <a href='/photos/<%= photo.id %>' style='background-image: url(/uploads/<%= photo.filename%>);' class="thumb img-responsive img-thumbnail" alt="Responsive image"/></a>
+        <div class='row'>
+          <div>
+            <form method="post" action="/delete_photo"  class="inline-form">     
+              <div class='ratingfont inline-form'>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                creep score: 
+                <span class="ratingcolor"><%=photo.rating%></span>
+              
+              
+                <input type="hidden" name="photo_id" value="<%=photo.id%>">
+                <input type="hidden" name="user_name" value="<%=logged_user.username%>">
+                &nbsp&nbsp&nbsp&nbsp<button type='submit' class='btn btn-danger'>delete</button>
+              
+              </div>  
+            </form>
+          </div>
         </div>
       </div>
+      <% end %>
     </div>
-    <% end %>
+   <% end %>
   </div>
- <% end %>
-</div>
 
 
 
 </p>
+
+</span>
