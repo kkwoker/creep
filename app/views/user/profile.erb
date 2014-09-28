@@ -1,7 +1,7 @@
 <span class='textcolor'>
 
 
-<div class="comment-box" style="text-align: center;">
+<div class="comment-box" style="text-align: center; margin-bottom: 30px; padding-bottom: 10px;" >
   <% logged_user = User.find(session[:user_id]) %>
   <h3 class='text-color'>PROFILE FOR : <%= logged_user.username%></h3>
   <p>
@@ -39,7 +39,7 @@
         <div class='row'>
           <div>
             <form method="post" action="/delete_photo"  class="inline-form">     
-              <div class='ratingfont inline-form'>
+              <div class='ratingfont inline-form' style="padding-top: 10px">
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 creep score: 
                 <span class="ratingcolor"><%=photo.rating%></span>
@@ -47,7 +47,7 @@
               
                 <input type="hidden" name="photo_id" value="<%=photo.id%>">
                 <input type="hidden" name="user_name" value="<%=logged_user.username%>">
-                &nbsp&nbsp&nbsp&nbsp<button type='submit' class='btn btn-danger'>delete</button>
+                <button type='submit' class='btn btn-danger' style="margin-left: 160px">delete</button>
               
               </div>  
             </form>
