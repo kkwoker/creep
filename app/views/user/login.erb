@@ -9,23 +9,24 @@
      Incorrect credentials 
   <% end %>
 
-  <form id="signup-form" method="get" action="/signup">
-  </form>
-<span class='textcolor'>
-<form id="login-form" method="post" action="/login">
-  <div class="row" style='padding: 25px;'>
-    <div class="col-md-3 col-xs-12">
-      <h3>Username:</h3>
-      <input type="text" name="username" required class="form-control">
-    </div>
-    <div class="col-md-3 col-xs-12">
-      <h3>Password:</h3>
-        <input type="password" name="password" class="form-control">
-    </div>
-  </div>
-  <div class="col-md-3 col-xs-12">
-    <button form="login-form"type="submit" class='btn btn-danger'>Login</button>
-    <button form="signup-form" type="submit" class='btn btn-danger'>Sign Up</button>
-  </div>
+<form id="signup-form" method="get" action="/signup">
 </form>
+<div class='show-box' style='margin-right: 400px'>
+<span class='textcolor'>
+  <form id="login-form" class='inline-form' method="post" action="/login">
+    <div class="row" style='padding: 25px;'>
+      <div class="col-md-3 col-xs-12">
+        <h3>Username:</h3>
+        <input type="text" name="username" required class="form-control">
+      <button style='margin-top:20px' form="login-form"type="submit" class='btn btn-danger'>Login</button>
+      <button style='margin-top:20px' form="signup-form" type="submit" class='btn btn-danger'>Sign Up</button>
+      </div>
+      <div class="col-md-3 col-xs-12">
+        <h3>Password:</h3>
+          <input type="password" name="password" class="form-control">
+      </div>
+    </div>
+
+  </form>
+</div>
 <%end%>

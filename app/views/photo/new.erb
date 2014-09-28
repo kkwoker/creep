@@ -5,19 +5,17 @@
 <form method="post" action="/photos" enctype='multipart/form-data' runat="server" onsubmit="return checkSize(2097152)">
 <span class='textcolor'>
   <div class="row" style='padding: 25px;'>
-    <div class="col-md-6 col-xs-12">
+    <div class="show-box col-md-6 col-xs-12" style='padding:20px'>
       <label>Title:</label>
-      <input type="text" name="title"class="form-control">
-    </div>
-    <div class="col-md-6 col-xs-12">
-      <label>Tag(s) seperate by ',' : </label>
-        <input type="text" name="tags" class="form-control">
-    </div>
-  </div>
-  <div class='col-md-6 col-sm-8 col-xs-12' style='margin-left:25px' >
-   <label>photo:</label>
-    <input type="file" name="photo" id="imgInp"  accept=".jpg,.gif,.png" required> 
-    <img style="border: solid 2px;" id="blah" src="" width="300" height="300" style='margin-top: 10px'/>
-    <button type='submit'  class="btn btn-primary btn-lg">GET YOUR CREEP ON</button>
+        <input type="text" name="title"class="form-control">
+          <label>Tag(s) seperate by ',' : </label>
+            <input type="text" name="tags" class="form-control">
+          </div>
+          <div style='margin-left: 30px'>
+            <input type="file" name="photo" id="imgInp"  accept=".jpg,.gif,.png" required> 
+            <p>&nbsp</p>
+            <img style="border: solid 2px;" id="blah" src="" width="300" height="300" style='margin-top: 10px;'/>
+            <button type='submit'  style='margin-top:20px' class="btn btn-danger btn-lg">GET YOUR CREEP ON</button>
+          </div>
   </div>
 </form>
