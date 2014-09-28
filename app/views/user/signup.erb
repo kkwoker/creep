@@ -4,26 +4,21 @@
 
 
 <%if @error%>
-  username already taken
+  <h3 class='textcolor'>username already taken</h3>
 <%end%>
 <span class='textcolor'>
-<form method="post" action="/signup">
+<div class='show-box' style='margin-right: 400px'>
+<form method="post" action="/signup" class='inline form'>
   <div class="row" style='padding: 25px;'>
     <div class="col-md-3 col-xs-12">
-      <h3>Desired Username:</h3>
+      <h3>Username:</h3>
       <input type="text" name="username" required class="form-control">
+        <button style='margin-top:20px' type="submit" class='btn btn-danger'>Sign Up</button>
     </div>
     <div class="col-md-3 col-xs-12">
       <h3>Password:</h3>
         <input type="password" name="password" class="form-control">
     </div>
   </div>
-
-
-<div class="row" style="padding:25px;">
-  <div class="col-md-3 col-xs-12">
-    <button type="submit" class='btn btn-danger'>Sign Up</button>
-  </div>
-</div>
-
 </form>
+</div>

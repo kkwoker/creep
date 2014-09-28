@@ -31,7 +31,7 @@
       <form action="/rate" method="post">
       <!-- the stars are here in an empty div -->
         <button type="submit"  class="btn btn-lrg btn-danger" style='margin-right: 20px; margin-top:20px'>Rate</button>
-          <span class="rate" name="raty" style='padding-top: 100px'></span>
+          <span class="rate" name="raty"></span>
           <!-- this is the hidden input that raty sends the data to -->    
           <input type="number" name="rating" style="display:none;" id="rating">
         <input type="text" style="display:none;" name="id" value="<%= @photo.id %>">
